@@ -57,7 +57,7 @@ public class ParkingLotTest {
 //    }
 
     @Test
-    void should_no_car_be_fetched_when_given_wrong_ticket() {
+    void should_no_car_be_fetched_when_fetch_given_wrong_ticket() {
         //given
         CarTicket ticket = new CarTicket();
         //when
@@ -68,7 +68,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_no_car_be_fecthed_when_given_no_ticket() {
+    void should_no_car_be_fetched_when_fetch_given_no_ticket() {
         //given
 
         //when
@@ -76,5 +76,18 @@ public class ParkingLotTest {
         Car fetchedCar = parkingLot.fetch(null);
         //then
         assertEquals(null,fetchedCar);
+    }
+
+    @Test
+    void should_no_car_when_fetch_given_already_been_used_ticket() {
+        //given
+        Car car=new Car();
+        ParkingLot parkingLot=new ParkingLot();
+        CarTicket ticketFirst=parkingLot.park(car);
+        parkingLot.fetch(ticketFirst);
+        //when
+        CarTicket ticketSecond=parkingLot.park(car);
+        //then
+        assertEquals(null,ticketSecond);
     }
 }
