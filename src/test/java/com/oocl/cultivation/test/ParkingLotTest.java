@@ -153,4 +153,21 @@ public class ParkingLotTest {
         //then
         assertEquals("Unrecognized parking ticket.\n",systemOut());
     }
+
+    @Test
+    void should_error_message_when_park_no_position_given_car() {
+        //given
+        List<Car> cars = new ArrayList<>();
+        ParkingBoy parkingBoy=new ParkingBoy();
+        for (int i = 0; i < 10; i++) {
+            Car car = new Car();
+            cars.add(car);
+            parkingBoy.park(car);
+        }
+        //when
+        cars.add(new Car());
+        parkingBoy.park(cars.get(10));
+        //then
+        assertEquals("Not enough position.\n",systemOut());
+    }
 }
