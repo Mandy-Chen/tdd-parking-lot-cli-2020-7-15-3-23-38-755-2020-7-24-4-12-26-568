@@ -35,26 +35,32 @@ public class ParkingLotTest {
         assertNotNull(fetchedCar);
         assertEquals(car, fetchedCar);
     }
-    //TODO AC2
-//
-//    @Test
-//    void should_return_tickets_when_given_multiple_cars() {
-//        //given
-//        List<Car> cars=new ArrayList();
-//        for (int i = 0; i <4; i++) {
-//             Car car= new Car();
-//             cars.add(car);
-//        }
-//        //when
-//        List<CarTicket> tickets=new ArrayList();
-//        ParkingLot parkingLot=new ParkingLot();
-//        for (int i = 0; i < cars.size(); i++) {
-//            CarTicket ticket=parkingLot.park(cars.get(i));
-//            tickets.add(ticket);
-//        }
-//        //then
-//
-//    }
+
+    @Test
+    void should_return_tickets_when_given_multiple_cars() {
+        //given
+        List<Car> cars=new ArrayList();
+        for (int i = 0; i <2; i++) {
+             Car car= new Car();
+             cars.add(car);
+        }
+
+        //when
+        List<CarTicket> tickets=new ArrayList();
+        List<Car> fetchCars=new ArrayList();
+        ParkingLot parkingLot=new ParkingLot();
+        for (int i = 0; i < cars.size(); i++) {
+            CarTicket ticket=parkingLot.park(cars.get(i));
+            tickets.add(ticket);
+            Car car=parkingLot.fetch(ticket);
+            fetchCars.add(car);
+        }
+
+        //then
+        assertNotNull(fetchCars);
+        assertEquals(cars,fetchCars);
+
+    }
 
     @Test
     void should_no_car_be_fetched_when_fetch_given_wrong_ticket() {
