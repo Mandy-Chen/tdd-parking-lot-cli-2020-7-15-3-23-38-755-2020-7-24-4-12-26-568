@@ -9,7 +9,7 @@ public class ParkingLot {
     private int capacity = 10;
 
     public Car fetch(CarTicket ticket) {
-        if (ticket==null) {
+        if (ticket==null || !parkingRooms.containsKey(ticket)) {
             System.out.println("Unrecognized parking ticket.");
             return null;
         } else {
