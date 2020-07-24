@@ -22,11 +22,7 @@ public class ParkingLotTest {
         System.setOut(new PrintStream(outContent));
     }
 
-    //    @AfterEach
-//    public void tearDown() throws Throwable {
-//        out.close();
-//        System.setOut(System.out); //将输出重新设置为控制台输出
-//    }
+
     private String systemOut() {
         return outContent.toString();
     }
@@ -142,5 +138,18 @@ public class ParkingLotTest {
         //then
         assertEquals("Unrecognized parking ticket.\n", systemOut());
 
+    }
+
+    @Test
+    void should_error_message_when_fetch_given_ticket_has_been_used() {
+        //given
+        Car car=new Car();
+        ParkingLot parkingLot=new ParkingLot();
+        CarTicket ticket=parkingLot.park(car);
+        parkingLot.fetch(ticket);
+        //when
+        parkingLot.fetch(ticket);
+        //then
+        assertEquals("Unrecognized parking ticket.\n",systemOut());
     }
 }
