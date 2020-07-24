@@ -23,10 +23,11 @@ public class ParkingLotTest {
     @Test
     void should_fetch_car_when_fetch_from_parking_lot_given_car_ticket() {
         //given
-        CarTicket ticket=new CarTicket();
-        //when
-        Car fetchedCar=ParkingLot.fetch(ticket);
         Car car=new Car();
+        //when
+        ParkingLot parkingLot=new ParkingLot();
+        CarTicket ticket=parkingLot.park(car);
+        Car fetchedCar=parkingLot.fetch(ticket);
         //then
         assertNotNull(fetchedCar);
         assertEquals(car,fetchedCar);

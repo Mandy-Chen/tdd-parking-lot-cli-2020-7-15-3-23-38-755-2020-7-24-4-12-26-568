@@ -6,12 +6,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ParkingLot {
-    public static Car fetch(CarTicket ticket) {
-        return new Car();
+    private Map<CarTicket, Car> parkingRooms = new HashMap<>();
+
+    public Car fetch(CarTicket ticket) {
+        return  parkingRooms.get(ticket);
     }
 
-    //    private Map<CarTicket,Car> parkingRooms=new HashMap<>();
     public CarTicket park(Car car) {
-        return new CarTicket();
+        CarTicket ticket=new CarTicket();
+        parkingRooms.put(ticket,car);
+        return ticket;
     }
 }
