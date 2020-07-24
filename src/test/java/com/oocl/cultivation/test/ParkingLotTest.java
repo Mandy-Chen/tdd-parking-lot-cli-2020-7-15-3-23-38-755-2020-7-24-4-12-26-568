@@ -61,8 +61,19 @@ public class ParkingLotTest {
         //given
         CarTicket ticket = new CarTicket();
         //when
-        ParkingLot parkingLot=new ParkingLot();
-        Car fetchedCar=parkingLot.fetch(ticket);
+        ParkingLot parkingLot = new ParkingLot();
+        Car fetchedCar = parkingLot.fetch(ticket);
+        //then
+        assertEquals(null, fetchedCar);
+    }
+
+    @Test
+    void should_no_car_be_fecthed_when_given_no_ticket() {
+        //given
+
+        //when
+        ParkingLot parkingLot = new ParkingLot();
+        Car fetchedCar = parkingLot.fetch(null);
         //then
         assertEquals(null,fetchedCar);
     }
