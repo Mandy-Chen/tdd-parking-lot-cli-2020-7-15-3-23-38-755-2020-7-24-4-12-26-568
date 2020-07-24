@@ -3,14 +3,32 @@ package com.oocl.cultivation.test;
 import com.oocl.cultivation.Car;
 import com.oocl.cultivation.CarTicket;
 import com.oocl.cultivation.ParkingLot;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
+    private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    public ByteArrayOutputStream out = null;
+
+    @Before
+    public void setup() {
+        System.setOut(new PrintStream(outContent));
+    }
+
+    @After
+    public void tearDown() throws Throwable {
+        out.close();
+        System.setOut(System.out); //将输出重新设置为控制台输出
+    }
+
     @Test
     void should_return_ticket_when_park_given_car() {
         //given
@@ -99,10 +117,10 @@ public class ParkingLotTest {
     @Test
     void should_get_no_ticket_when_park_no_position_given_car() {
         //given
-        List<Car> cars=new ArrayList<>();
+        List<Car> cars = new ArrayList<>();
         ParkingLot parkingLot = new ParkingLot();
         for (int i = 0; i < 10; i++) {
-            Car car=new Car();
+            Car car = new Car();
             cars.add(car);
             parkingLot.park(car);
         }
@@ -111,5 +129,17 @@ public class ParkingLotTest {
         CarTicket ticket = parkingLot.park(cars.get(10));
         //then
         assertNull(ticket);
+    }
+
+    @Test
+    void should_error_message_when_fetch_given_no_ticket() {
+        //given
+
+        //when
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.fetch(null);
+        String error_message = out.toString();
+        //then
+        assertEquals("Unrecognized parking ticket.", error_message);
     }
 }
