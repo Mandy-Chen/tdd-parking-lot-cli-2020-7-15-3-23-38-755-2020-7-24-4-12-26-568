@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
     @Test
@@ -39,26 +38,26 @@ public class ParkingLotTest {
     @Test
     void should_return_tickets_when_given_multiple_cars() {
         //given
-        List<Car> cars=new ArrayList();
-        for (int i = 0; i <2; i++) {
-             Car car= new Car();
-             cars.add(car);
+        List<Car> cars = new ArrayList();
+        for (int i = 0; i < 2; i++) {
+            Car car = new Car();
+            cars.add(car);
         }
 
         //when
-        List<CarTicket> tickets=new ArrayList();
-        List<Car> fetchCars=new ArrayList();
-        ParkingLot parkingLot=new ParkingLot();
+        List<CarTicket> tickets = new ArrayList();
+        List<Car> fetchCars = new ArrayList();
+        ParkingLot parkingLot = new ParkingLot();
         for (int i = 0; i < cars.size(); i++) {
-            CarTicket ticket=parkingLot.park(cars.get(i));
+            CarTicket ticket = parkingLot.park(cars.get(i));
             tickets.add(ticket);
-            Car car=parkingLot.fetch(ticket);
+            Car car = parkingLot.fetch(ticket);
             fetchCars.add(car);
         }
 
         //then
         assertNotNull(fetchCars);
-        assertEquals(cars,fetchCars);
+        assertEquals(cars, fetchCars);
 
     }
 
@@ -81,19 +80,36 @@ public class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot();
         Car fetchedCar = parkingLot.fetch(null);
         //then
-        assertEquals(null,fetchedCar);
+        assertEquals(null, fetchedCar);
     }
 
     @Test
     void should_no_car_when_fetch_given_already_been_used_ticket() {
         //given
-        Car car=new Car();
-        ParkingLot parkingLot=new ParkingLot();
-        CarTicket ticketFirst=parkingLot.park(car);
+        Car car = new Car();
+        ParkingLot parkingLot = new ParkingLot();
+        CarTicket ticketFirst = parkingLot.park(car);
         parkingLot.fetch(ticketFirst);
         //when
-        Car fetchCar=parkingLot.fetch(ticketFirst);
+        Car fetchCar = parkingLot.fetch(ticketFirst);
         //then
-        assertEquals(null,fetchCar);
+        assertEquals(null, fetchCar);
+    }
+
+    @Test
+    void should_get_no_ticket_when_park_no_position_given_car() {
+        //given
+        List<Car> cars=new ArrayList<>();
+        ParkingLot parkingLot = new ParkingLot();
+        for (int i = 0; i < 10; i++) {
+            Car car=new Car();
+            cars.add(car);
+            parkingLot.park(car);
+        }
+        //when
+        cars.add(new Car());
+        CarTicket ticket = parkingLot.park(cars.get(10));
+        //then
+        assertNull(ticket);
     }
 }

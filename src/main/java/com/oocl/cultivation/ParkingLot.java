@@ -13,7 +13,6 @@ public class ParkingLot {
     }
 
     public CarTicket park(Car car) {
-
         CarTicket ticket=new CarTicket();
         parkingRooms.put(ticket,car);
         return ticket;
