@@ -18,6 +18,7 @@ public class ParkingBoy {
             parkingLot.getParkingRooms().put(ticket, car);
             return ticket;
         } else {
+            System.out.println("Not enough position.");
             return null;
         }
     }
