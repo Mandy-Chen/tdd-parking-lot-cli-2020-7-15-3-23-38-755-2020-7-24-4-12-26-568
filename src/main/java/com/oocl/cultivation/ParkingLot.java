@@ -9,11 +9,12 @@ public class ParkingLot {
     private int capacity = 10;
 
     public Car fetch(CarTicket ticket) {
-        if (ticket.equals(null)) {
+        if (ticket==null) {
             System.out.println("Unrecognized parking ticket.");
-            return parkingRooms.remove(ticket);
-        } else {
             return null;
+        } else {
+            return parkingRooms.remove(ticket);
+
         }
     }
 

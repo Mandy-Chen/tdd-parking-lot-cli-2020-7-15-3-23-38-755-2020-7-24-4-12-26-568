@@ -3,8 +3,7 @@ package com.oocl.cultivation.test;
 import com.oocl.cultivation.Car;
 import com.oocl.cultivation.CarTicket;
 import com.oocl.cultivation.ParkingLot;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -18,15 +17,18 @@ public class ParkingLotTest {
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     public ByteArrayOutputStream out = null;
 
-    @Before
+    @BeforeEach
     public void setup() {
         System.setOut(new PrintStream(outContent));
     }
 
-    @After
-    public void tearDown() throws Throwable {
-        out.close();
-        System.setOut(System.out); //将输出重新设置为控制台输出
+    //    @AfterEach
+//    public void tearDown() throws Throwable {
+//        out.close();
+//        System.setOut(System.out); //将输出重新设置为控制台输出
+//    }
+    private String systemOut() {
+        return outContent.toString();
     }
 
     @Test
@@ -134,12 +136,11 @@ public class ParkingLotTest {
     @Test
     void should_error_message_when_fetch_given_no_ticket() {
         //given
-
         //when
         ParkingLot parkingLot = new ParkingLot();
         parkingLot.fetch(null);
-        String error_message = out.toString();
         //then
-        assertEquals("Unrecognized parking ticket.", error_message);
+        assertEquals("Unrecognized parking ticket.\n", systemOut());
+
     }
 }
