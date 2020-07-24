@@ -86,8 +86,8 @@ public class ParkingLotTest {
         CarTicket ticketFirst=parkingLot.park(car);
         parkingLot.fetch(ticketFirst);
         //when
-        CarTicket ticketSecond=parkingLot.park(car);
+        Car fetchCar=parkingLot.fetch(ticketFirst);
         //then
-        assertEquals(null,ticketSecond);
+        assertEquals(null,fetchCar);
     }
 }
