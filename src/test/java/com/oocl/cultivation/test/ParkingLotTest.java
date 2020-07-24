@@ -2,6 +2,7 @@ package com.oocl.cultivation.test;
 
 import com.oocl.cultivation.Car;
 import com.oocl.cultivation.CarTicket;
+import com.oocl.cultivation.ParkingBoy;
 import com.oocl.cultivation.ParkingLot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,10 +31,10 @@ public class ParkingLotTest {
     @Test
     void should_return_ticket_when_park_given_car() {
         //given
-        ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
         //when
-        CarTicket ticket = parkingLot.park(car);
+        ParkingBoy parkingBoy=new ParkingBoy();
+        CarTicket ticket = parkingBoy.park(car);
         //then
         assertNotNull(ticket);
     }
@@ -43,9 +44,9 @@ public class ParkingLotTest {
         //given
         Car car = new Car();
         //when
-        ParkingLot parkingLot = new ParkingLot();
-        CarTicket ticket = parkingLot.park(car);
-        Car fetchedCar = parkingLot.fetch(ticket);
+        ParkingBoy parkingBoy=new ParkingBoy();
+        CarTicket ticket = parkingBoy.park(car);
+        Car fetchedCar = parkingBoy.fetch(ticket);
         //then
         assertNotNull(fetchedCar);
         assertEquals(car, fetchedCar);
@@ -63,11 +64,11 @@ public class ParkingLotTest {
         //when
         List<CarTicket> tickets = new ArrayList();
         List<Car> fetchCars = new ArrayList();
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy=new ParkingBoy();
         for (int i = 0; i < cars.size(); i++) {
-            CarTicket ticket = parkingLot.park(cars.get(i));
+            CarTicket ticket = parkingBoy.park(cars.get(i));
             tickets.add(ticket);
-            Car car = parkingLot.fetch(ticket);
+            Car car = parkingBoy.fetch(ticket);
             fetchCars.add(car);
         }
 
@@ -82,8 +83,8 @@ public class ParkingLotTest {
         //given
         CarTicket ticket = new CarTicket();
         //when
-        ParkingLot parkingLot = new ParkingLot();
-        Car fetchedCar = parkingLot.fetch(ticket);
+        ParkingBoy parkingBoy=new ParkingBoy();
+        Car fetchedCar = parkingBoy.fetch(ticket);
         //then
         assertEquals(null, fetchedCar);
     }
@@ -93,8 +94,8 @@ public class ParkingLotTest {
         //given
 
         //when
-        ParkingLot parkingLot = new ParkingLot();
-        Car fetchedCar = parkingLot.fetch(null);
+        ParkingBoy parkingBoy=new ParkingBoy();
+        Car fetchedCar = parkingBoy.fetch(null);
         //then
         assertEquals(null, fetchedCar);
     }
@@ -103,11 +104,11 @@ public class ParkingLotTest {
     void should_no_car_when_fetch_given_already_been_used_ticket() {
         //given
         Car car = new Car();
-        ParkingLot parkingLot = new ParkingLot();
-        CarTicket ticketFirst = parkingLot.park(car);
-        parkingLot.fetch(ticketFirst);
+        ParkingBoy parkingBoy=new ParkingBoy();
+        CarTicket ticketFirst = parkingBoy.park(car);
+        parkingBoy.fetch(ticketFirst);
         //when
-        Car fetchCar = parkingLot.fetch(ticketFirst);
+        Car fetchCar = parkingBoy.fetch(ticketFirst);
         //then
         assertEquals(null, fetchCar);
     }
@@ -116,15 +117,15 @@ public class ParkingLotTest {
     void should_get_no_ticket_when_park_no_position_given_car() {
         //given
         List<Car> cars = new ArrayList<>();
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy=new ParkingBoy();
         for (int i = 0; i < 10; i++) {
             Car car = new Car();
             cars.add(car);
-            parkingLot.park(car);
+            parkingBoy.park(car);
         }
         //when
         cars.add(new Car());
-        CarTicket ticket = parkingLot.park(cars.get(10));
+        CarTicket ticket = parkingBoy.park(cars.get(10));
         //then
         assertNull(ticket);
     }
@@ -133,8 +134,8 @@ public class ParkingLotTest {
     void should_error_message_when_fetch_given_no_ticket() {
         //given
         //when
-        ParkingLot parkingLot = new ParkingLot();
-        parkingLot.fetch(null);
+        ParkingBoy parkingBoy=new ParkingBoy();
+        parkingBoy.fetch(null);
         //then
         assertEquals("Unrecognized parking ticket.\n", systemOut());
 
@@ -144,11 +145,11 @@ public class ParkingLotTest {
     void should_error_message_when_fetch_given_ticket_has_been_used() {
         //given
         Car car=new Car();
-        ParkingLot parkingLot=new ParkingLot();
-        CarTicket ticket=parkingLot.park(car);
-        parkingLot.fetch(ticket);
+        ParkingBoy parkingBoy=new ParkingBoy();
+        CarTicket ticket=parkingBoy.park(car);
+        parkingBoy.fetch(ticket);
         //when
-        parkingLot.fetch(ticket);
+        parkingBoy.fetch(ticket);
         //then
         assertEquals("Unrecognized parking ticket.\n",systemOut());
     }

@@ -8,23 +8,19 @@ public class ParkingLot {
     private Map<CarTicket, Car> parkingRooms = new HashMap<>();
     private int capacity = 10;
 
-    public Car fetch(CarTicket ticket) {
-        if (ticket==null || !parkingRooms.containsKey(ticket)) {
-            System.out.println("Unrecognized parking ticket.");
-            return null;
-        } else {
-            return parkingRooms.remove(ticket);
-
-        }
+    public Map<CarTicket, Car> getParkingRooms() {
+        return parkingRooms;
     }
 
-    public CarTicket park(Car car) {
-        if (parkingRooms.size() < capacity) {
-            CarTicket ticket = new CarTicket();
-            parkingRooms.put(ticket, car);
-            return ticket;
-        } else {
-            return null;
-        }
+    public void setParkingRooms(Map<CarTicket, Car> parkingRooms) {
+        this.parkingRooms = parkingRooms;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 }
