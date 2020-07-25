@@ -3,12 +3,14 @@ package com.oocl.cultivation;
 public class ParkingBoy {
     ParkingLot parkingLot=new ParkingLot();
     public Car fetch(CarTicket ticket) {
-        if (ticket==null || !parkingLot.getParkingRooms().containsKey(ticket)) {
+        if(ticket==null){
+            System.out.println("Please provide your parking ticket.");
+            return null;
+        }else if (!parkingLot.getParkingRooms().containsKey(ticket)) {
             System.out.println("Unrecognized parking ticket.");
             return null;
         } else {
             return parkingLot.getParkingRooms().remove(ticket);
-
         }
     }
 
