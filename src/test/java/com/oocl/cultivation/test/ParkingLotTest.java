@@ -24,7 +24,6 @@ public class ParkingLotTest {
         System.setOut(new PrintStream(outContent));
     }
 
-
     private String systemOut() {
         return outContent.toString();
     }
@@ -231,5 +230,31 @@ public class ParkingLotTest {
             assertEquals(cars.get(i),parkingLotA.getParkingRooms().get(tickets.get(i)));
         }
         assertEquals(cars.get(10),parkingLotB.getParkingRooms().get(tickets.get(10)));
+    }
+
+    @Test
+    void should_park_lot_which_contains_more_empty_position_when_smart_park_given_smart_parking_boy() {
+        //given
+        ParkingBoy parkingBoy=new ParkingBoy();
+        parkingBoy.setId("smart parking boy");
+        ParkingLot parkingLotA = new ParkingLot("A");
+        ParkingLot parkingLotB = new ParkingLot("B");
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLotA);
+        parkingLots.add(parkingLotB);
+        parkingBoy.setParkingLot(parkingLots);
+        //when
+        List<Car> cars=new ArrayList<>();
+        List<CarTicket> tickets=new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            Car car=new Car();
+            cars.add(car);
+            CarTicket ticket=parkingBoy.park(car);
+            tickets.add(ticket);
+        }
+        //then
+        assertEquals(cars.get(0),parkingLotA.getParkingRooms().get(tickets.get(0)));
+        assertEquals(cars.get(1),parkingLotB.getParkingRooms().get(tickets.get(1)));
+        assertEquals(cars.get(2),parkingLotA.getParkingRooms().get(tickets.get(2)));
     }
 }
