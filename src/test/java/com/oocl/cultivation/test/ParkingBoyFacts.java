@@ -13,12 +13,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ParkingBoyFacts {
     @Test
-    void should_park_lot_which_contains_more_empty_position_when_smart_park_given_smart_parking_boy() {
+    void should_park_lot_which_contains_more_empty_position_when_smart_park_given_super_smart_parking_boy() {
         //given
         ParkingBoy parkingBoy=new ParkingBoy();
-        parkingBoy.setId("smart parking boy");
+        parkingBoy.setId("super smart parking boy");
         ParkingLot parkingLotA = new ParkingLot("A");
         ParkingLot parkingLotB = new ParkingLot("B");
+        parkingLotA.setCapacity(10);
+        parkingLotB.setCapacity(20);
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(parkingLotA);
         parkingLots.add(parkingLotB);
@@ -26,7 +28,7 @@ class ParkingBoyFacts {
         //when
         List<Car> cars=new ArrayList<>();
         List<CarTicket> tickets=new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             Car car=new Car();
             cars.add(car);
             CarTicket ticket=parkingBoy.park(car);
@@ -36,6 +38,7 @@ class ParkingBoyFacts {
         assertEquals(cars.get(0),parkingLotB.getParkingRooms().get(tickets.get(0)));
         assertEquals(cars.get(1),parkingLotA.getParkingRooms().get(tickets.get(1)));
         assertEquals(cars.get(2),parkingLotB.getParkingRooms().get(tickets.get(2)));
-        assertEquals(cars.get(3),parkingLotA.getParkingRooms().get(tickets.get(3)));
+        assertEquals(cars.get(3),parkingLotB.getParkingRooms().get(tickets.get(3)));
+        assertEquals(cars.get(4),parkingLotA.getParkingRooms().get(tickets.get(4)));
     }
 }

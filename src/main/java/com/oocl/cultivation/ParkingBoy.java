@@ -43,7 +43,16 @@ public class ParkingBoy {
 
     public CarTicket park(Car car) {
         if (id == "super smart parking boy") {
-
+            int minParkingLotSub = 0;
+            for (int i = 0; i < parkingLot.size(); i++) {
+                if (parkingLot.get(i).getParkingRooms().size()*1000/parkingLot.get(i).getCapacity() <=parkingLot.get(minParkingLotSub).getParkingRooms().size()*1000/parkingLot.get(minParkingLotSub).getCapacity()) {
+                    minParkingLotSub = i;
+                }
+            }
+            CarTicket ticket = new CarTicket();
+            System.out.println(parkingLot.get(minParkingLotSub).getId());
+            parkingLot.get(minParkingLotSub).getParkingRooms().put(ticket, car);
+            return ticket;
         }
         if (id == "smart parking boy") {
             int minParkingLotSub = 0;

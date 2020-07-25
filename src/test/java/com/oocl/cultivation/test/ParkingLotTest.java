@@ -275,7 +275,7 @@ public class ParkingLotTest {
         //when
         List<Car> cars=new ArrayList<>();
         List<CarTicket> tickets=new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             Car car=new Car();
             cars.add(car);
             CarTicket ticket=parkingBoy.park(car);
@@ -285,6 +285,7 @@ public class ParkingLotTest {
         assertEquals(cars.get(0),parkingLotB.getParkingRooms().get(tickets.get(0)));
         assertEquals(cars.get(1),parkingLotA.getParkingRooms().get(tickets.get(1)));
         assertEquals(cars.get(2),parkingLotB.getParkingRooms().get(tickets.get(2)));
-        assertEquals(cars.get(3),parkingLotA.getParkingRooms().get(tickets.get(3)));
+        assertEquals(cars.get(3),parkingLotB.getParkingRooms().get(tickets.get(3)));
+        assertEquals(cars.get(4),parkingLotA.getParkingRooms().get(tickets.get(4)));
     }
 }
