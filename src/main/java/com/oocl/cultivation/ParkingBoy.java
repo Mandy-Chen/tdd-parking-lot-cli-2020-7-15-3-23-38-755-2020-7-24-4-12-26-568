@@ -7,17 +7,13 @@ public class ParkingBoy {
     private List<ParkingLot> parkingLot = new ArrayList<>();
     private String id;
 
-    public String getId() {
-        return id;
-    }
+
 
     public void setId(String id) {
         this.id = id;
     }
 
-    public List<ParkingLot> getParkingLot() {
-        return parkingLot;
-    }
+
 
     public void setParkingLot(List<ParkingLot> parkingLot) {
         this.parkingLot = parkingLot;

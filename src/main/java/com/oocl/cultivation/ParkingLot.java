@@ -21,13 +21,7 @@ public class ParkingLot {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
-    public void setParkingRooms(Map<CarTicket, Car> parkingRooms) {
-        this.parkingRooms = parkingRooms;
-    }
 
     public int getCapacity() {
         return capacity;
