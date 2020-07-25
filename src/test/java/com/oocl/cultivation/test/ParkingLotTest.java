@@ -154,7 +154,15 @@ public class ParkingLotTest {
         //then
         assertEquals("Unrecognized parking ticket.\n", systemOut());
     }
-
+    @Test
+    void should_error_message_when_fetch_given_customer_not_provide_ticket() {
+        //given
+        ParkingBoy parkingBoy=new ParkingBoy();
+        //when
+        parkingBoy.fetch(null);
+        //then
+        assertEquals("Please provide your parking ticket.\n", systemOut());
+    }
     @Test
     void should_error_message_when_park_no_position_given_car() {
         //given
@@ -171,6 +179,8 @@ public class ParkingLotTest {
         //then
         assertEquals("Not enough position.\n", systemOut());
     }
+
+
 
     //TODO 测试没写完，也没git
     @Test
