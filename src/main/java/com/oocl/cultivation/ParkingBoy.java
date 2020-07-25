@@ -1,6 +1,7 @@
 package com.oocl.cultivation;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ParkingBoy {
     private List<ParkingLot> parkingLot = new ArrayList<>();
@@ -41,23 +42,25 @@ public class ParkingBoy {
     }
 
     public CarTicket park(Car car) {
-        if(id=="smart parking boy"){
-            int minParkingLotSub=0;
+        if (id == "super smart parking boy") {
+
+        }
+        if (id == "smart parking boy") {
+            int minParkingLotSub = 0;
             for (int i = 0; i < parkingLot.size(); i++) {
-                if(parkingLot.get(i).getParkingRooms().size()<=parkingLot.get(minParkingLotSub).getParkingRooms().size()){
-                    minParkingLotSub=i;
+                if (parkingLot.get(i).getParkingRooms().size() <= parkingLot.get(minParkingLotSub).getParkingRooms().size()) {
+                    minParkingLotSub = i;
                 }
             }
             CarTicket ticket = new CarTicket();
-            parkingLot.get(minParkingLotSub).getParkingRooms().put(ticket,car);
+            parkingLot.get(minParkingLotSub).getParkingRooms().put(ticket, car);
             return ticket;
-        }else {
-            for (int i = 0; i < parkingLot.size(); i++) {
-                if (parkingLot.get(i).getParkingRooms().size() < parkingLot.get(i).getCapacity()) {
-                    CarTicket ticket = new CarTicket();
-                    parkingLot.get(i).getParkingRooms().put(ticket, car);
-                    return ticket;
-                }
+        }
+        for (int i = 0; i < parkingLot.size(); i++) {
+            if (parkingLot.get(i).getParkingRooms().size() < parkingLot.get(i).getCapacity()) {
+                CarTicket ticket = new CarTicket();
+                parkingLot.get(i).getParkingRooms().put(ticket, car);
+                return ticket;
             }
         }
         System.out.println("Not enough position.");
