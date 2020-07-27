@@ -88,20 +88,16 @@ class ParkingBoyTest {
         assertEquals(null, fetchCar);
     }
 
-//    @Test
-//    void should_get_no_ticket_when_park_no_position_given_car() {
-//        //given
-//        List<Car> cars = new ArrayList<>();
-//        ParkingBoy parkingBoy = new ParkingBoy();
-//        for (int i = 0; i < 10; i++) {
-//            Car car = new Car();
-//            cars.add(car);
-//            parkingBoy.park(car);
-//        }
-//        //when
-//        cars.add(new Car());
-//        CarTicket ticket = parkingBoy.park(cars.get(10));
-//        //then
-//        assertNull(ticket);
-//    }
+    @Test
+    void should_get_no_ticket_when_park_no_position_given_car() {
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
+        Car firstCar=new Car();
+        Car secondCar=new Car();
+        //when
+        parkingBoy.park(firstCar);
+        parkingBoy.park(secondCar);
+        //then
+        assertNull(parkingBoy.park(secondCar));
+    }
 }

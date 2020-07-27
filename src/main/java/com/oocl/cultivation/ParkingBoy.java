@@ -53,7 +53,10 @@ public class ParkingBoy implements Parkable {
 //               parkingLots.get(i).park(car);
 //            }
 //        }
-        return parkingLots.stream().filter(parkingLot -> parkingLot.getAvailableNumber() > 0).findFirst().get().park(car);
+        if(getAvailableNumber()>0){
+            return parkingLots.stream().filter(parkingLot -> parkingLot.getAvailableNumber() > 0).findFirst().get().park(car);
+        }
+        return null ;
     }
 
 
