@@ -100,4 +100,5 @@ class ParkingBoyTest {
         //then
         assertNull(parkingBoy.park(secondCar));
     }
+
 }

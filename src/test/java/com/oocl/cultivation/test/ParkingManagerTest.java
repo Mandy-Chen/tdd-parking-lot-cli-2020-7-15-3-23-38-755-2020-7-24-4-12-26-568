@@ -42,7 +42,6 @@ public class ParkingManagerTest {
     @Test
     void should_return_error_message_when_manager_manage_parking_boy_to_park() throws Exception{
         //given
-        ParkingLot parkingLot = new ParkingLot(1);
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
         ParkingManager parkingManager = new ParkingManager(parkingBoy);
         Car firstCar = new Car();
@@ -52,6 +51,18 @@ public class ParkingManagerTest {
         //then
         assertThrows(Exception.class,()->{
             parkingManager.parking(secondCar);
+        });
+    }
+    @Test
+    void should_return_error_message_when_manager_manage_parking_boy_to_fetch() throws Exception{
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
+        ParkingManager parkingManager = new ParkingManager(parkingBoy);
+        CarTicket ticket=new CarTicket();
+        //when
+        //then
+        assertThrows(Exception.class,()->{
+            parkingManager.fetch(ticket);
         });
     }
 }
