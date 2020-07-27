@@ -33,7 +33,7 @@ public class ParkingLotTest {
         //given
         ParkingBoy parkingBoy = new ParkingBoy();
         List<ParkingLot> parkingLots = new ArrayList<>();
-        ParkingLot parkingLotA = new ParkingLot("A");
+        ParkingLot parkingLotA = new ParkingLot(totalPlaceNum, "A");
         parkingLots.add(parkingLotA);
         parkingBoy.setParkingLot(parkingLots);
         Car car = new Car();
@@ -50,7 +50,7 @@ public class ParkingLotTest {
         //when
         ParkingBoy parkingBoy = new ParkingBoy();
         List<ParkingLot> parkingLots = new ArrayList<>();
-        ParkingLot parkingLotA = new ParkingLot("A");
+        ParkingLot parkingLotA = new ParkingLot(totalPlaceNum, "A");
         parkingLots.add(parkingLotA);
         parkingBoy.setParkingLot(parkingLots);
         CarTicket ticket = parkingBoy.park(car);
@@ -72,7 +72,7 @@ public class ParkingLotTest {
         //when
         ParkingBoy parkingBoy = new ParkingBoy();
         List<ParkingLot> parkingLots = new ArrayList<>();
-        ParkingLot parkingLotA = new ParkingLot("A");
+        ParkingLot parkingLotA = new ParkingLot(totalPlaceNum, "A");
         parkingLots.add(parkingLotA);
         parkingBoy.setParkingLot(parkingLots);
         List<CarTicket> tickets = new ArrayList();
@@ -160,7 +160,7 @@ public class ParkingLotTest {
         //given
         ParkingBoy parkingBoy = new ParkingBoy();
         List<ParkingLot> parkingLots = new ArrayList<>();
-        ParkingLot parkingLotA = new ParkingLot("A");
+        ParkingLot parkingLotA = new ParkingLot(totalPlaceNum, "A");
         parkingLots.add(parkingLotA);
         parkingBoy.setParkingLot(parkingLots);
         Car car = new Car();
@@ -177,7 +177,7 @@ public class ParkingLotTest {
         //given
         ParkingBoy parkingBoy = new ParkingBoy();
         List<ParkingLot> parkingLots = new ArrayList<>();
-        ParkingLot parkingLotA = new ParkingLot("A");
+        ParkingLot parkingLotA = new ParkingLot(totalPlaceNum, "A");
         parkingLots.add(parkingLotA);
         parkingBoy.setParkingLot(parkingLots);
         //when
@@ -191,7 +191,7 @@ public class ParkingLotTest {
         //given
         ParkingBoy parkingBoy = new ParkingBoy();
         List<ParkingLot> parkingLots = new ArrayList<>();
-        ParkingLot parkingLotA = new ParkingLot("A");
+        ParkingLot parkingLotA = new ParkingLot(totalPlaceNum, "A");
         parkingLots.add(parkingLotA);
         parkingBoy.setParkingLot(parkingLots);
         for (int i = 0; i < 10; i++) {
@@ -207,8 +207,8 @@ public class ParkingLotTest {
     @Test
     void should_in_order_when_park_given_two_parkingLot() {
         //given
-        ParkingLot parkingLotA = new ParkingLot("A");
-        ParkingLot parkingLotB = new ParkingLot("B");
+        ParkingLot parkingLotA = new ParkingLot(totalPlaceNum, "A");
+        ParkingLot parkingLotB = new ParkingLot(totalPlaceNum, "B");
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(parkingLotA);
         parkingLots.add(parkingLotB);
@@ -237,8 +237,8 @@ public class ParkingLotTest {
         //given
         ParkingBoy parkingBoy=new ParkingBoy();
         parkingBoy.setId("smart parking boy");
-        ParkingLot parkingLotA = new ParkingLot("A");
-        ParkingLot parkingLotB = new ParkingLot("B");
+        ParkingLot parkingLotA = new ParkingLot(totalPlaceNum, "A");
+        ParkingLot parkingLotB = new ParkingLot(totalPlaceNum, "B");
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(parkingLotA);
         parkingLots.add(parkingLotB);
@@ -264,8 +264,8 @@ public class ParkingLotTest {
         //given
         ParkingBoy parkingBoy=new ParkingBoy();
         parkingBoy.setId("super smart parking boy");
-        ParkingLot parkingLotA = new ParkingLot("A");
-        ParkingLot parkingLotB = new ParkingLot("B");
+        ParkingLot parkingLotA = new ParkingLot(totalPlaceNum, "A");
+        ParkingLot parkingLotB = new ParkingLot(totalPlaceNum, "B");
         parkingLotA.setCapacity(10);
         parkingLotB.setCapacity(20);
         List<ParkingLot> parkingLots = new ArrayList<>();

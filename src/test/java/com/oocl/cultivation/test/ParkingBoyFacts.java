@@ -17,8 +17,8 @@ class ParkingBoyFacts {
         //given
         ParkingBoy parkingBoy=new ParkingBoy();
         parkingBoy.setId("super smart parking boy");
-        ParkingLot parkingLotA = new ParkingLot("A");
-        ParkingLot parkingLotB = new ParkingLot("B");
+        ParkingLot parkingLotA = new ParkingLot(totalPlaceNum, "A");
+        ParkingLot parkingLotB = new ParkingLot(totalPlaceNum, "B");
         parkingLotA.setCapacity(10);
         parkingLotB.setCapacity(20);
         List<ParkingLot> parkingLots = new ArrayList<>();
