@@ -64,17 +64,17 @@ class ParkingBoyTest {
         assertEquals(null, fetchedCar);
     }
 
-//    @Test
-//    void should_no_car_be_fetched_when_fetch_given_no_ticket() {
-//        //given
-//
-//        //when
-//        ParkingBoy parkingBoy = new ParkingBoy();
-//        Car fetchedCar = parkingBoy.fetch(null);
-//        //then
-//        assertEquals(null, fetchedCar);
-//    }
-//
+    @Test
+    void should_no_car_be_fetched_when_fetch_given_no_ticket() {
+        //given
+
+        //when
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
+        Car fetchedCar = parkingBoy.fetch(null);
+        //then
+        assertEquals(null, fetchedCar);
+    }
+
 //    @Test
 //    void should_no_car_when_fetch_given_already_been_used_ticket() {
 //        //given
