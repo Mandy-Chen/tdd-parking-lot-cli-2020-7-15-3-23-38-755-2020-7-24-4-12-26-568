@@ -22,14 +22,12 @@ public class ParkingLot implements Parkable {
         return capacity;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
+
 
     @Override
     public CarTicket park(Car car) {
         if(getAvailableNumber()<=0){
-            throw new IndexOutOfBoundsException("Parking Rooms are full!");
+            throw new IndexOutOfBoundsException("PNot enough position.");
         }
         CarTicket ticket=new CarTicket();
         this.parkingRooms.put(ticket,car);

@@ -11,10 +11,6 @@ public class ParkingBoy implements Parkable {
         this.parkingLots = Arrays.asList(parkingLot);
     }
 
-    public void setParkingLots(List<ParkingLot> parkingLots) {
-        this.parkingLots = parkingLots;
-    }
-
     public Car fetch(CarTicket ticket) {
         Car fetchedCar = null;
         if (ticket == null) {
@@ -31,10 +27,15 @@ public class ParkingBoy implements Parkable {
         }
     }
 
-    //todo
     @Override
     public int getAvailableNumber() {
-        return 1;
+        int getAllAvailableNumber=0;
+        for (int i = 0; i < parkingLots.size(); i++) {
+            if (parkingLots.get(i).getAvailableNumber()>0) {
+                getAllAvailableNumber +=parkingLots.get(i).getAvailableNumber();
+            }
+        }
+        return getAllAvailableNumber;
     }
 
     @Override
@@ -45,15 +46,14 @@ public class ParkingBoy implements Parkable {
 
     //todo
     public CarTicket park(Car car) {
-        for (int i = 0; i < parkingLots.size(); i++) {
-            if (parkingLots.get(i).getParkingRooms().size() < parkingLots.get(i).getCapacity()) {
-                CarTicket ticket = new CarTicket();
-                parkingLots.get(i).getParkingRooms().put(ticket, car);
-                return ticket;
-            }
-        }
-        System.out.println("Not enough position.");
-        return null;
+//        for (int i = 0; i < parkingLots.size(); i++) {
+//            if (parkingLots.get(i).getParkingRooms().size() < parkingLots.get(i).getCapacity()) {
+//                CarTicket ticket = new CarTicket();
+//                parkingLots.get(i).getParkingRooms().put(ticket, car);
+//               parkingLots.get(i).park(car);
+//            }
+//        }
+        return parkingLots.stream().filter(parkingLot ->  parkingLot.getAvailableNumber()>0).findFirst().get().park(car);
     }
 
 
