@@ -6,16 +6,13 @@ import com.oocl.cultivation.ParkingBoy;
 import com.oocl.cultivation.ParkingLot;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingBoyTest {
     @Test
     void should_return_ticket_when_park_given_car() {
         //given
-        ParkingLot parkingLot=new ParkingLot(1);
+        ParkingLot parkingLot = new ParkingLot(1);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         Car car = new Car();
         //when
@@ -40,14 +37,14 @@ class ParkingBoyTest {
     @Test
     void should_return_tickets_when_given_multiple_cars() {
         //given
-        Car firstCar=new Car();
-        Car secondCar=new Car();
+        Car firstCar = new Car();
+        Car secondCar = new Car();
         //when
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(2));
-        CarTicket firstTicket=parkingBoy.park(firstCar);
-        CarTicket secondTicket=parkingBoy.park(secondCar);
-        Car firstFetchedCar=parkingBoy.fetch(firstTicket);
-        Car secondFetchedCar=parkingBoy.fetch(secondTicket);
+        CarTicket firstTicket = parkingBoy.park(firstCar);
+        CarTicket secondTicket = parkingBoy.park(secondCar);
+        Car firstFetchedCar = parkingBoy.fetch(firstTicket);
+        Car secondFetchedCar = parkingBoy.fetch(secondTicket);
         //then
         assertEquals(firstCar, firstFetchedCar);
         assertEquals(secondCar, secondFetchedCar);
@@ -92,13 +89,42 @@ class ParkingBoyTest {
     void should_get_no_ticket_when_park_no_position_given_car() {
         //given
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
-        Car firstCar=new Car();
-        Car secondCar=new Car();
+        Car firstCar = new Car();
+        Car secondCar = new Car();
         //when
         parkingBoy.park(firstCar);
         parkingBoy.park(secondCar);
         //then
         assertNull(parkingBoy.park(secondCar));
     }
+//todo
+//    @Test
+//    void should_in_order_when_park_given_two_parkingLot() {
+//        //given
+//        ParkingLot firstParkingLot = new ParkingLot(2);
+//        ParkingLot secondParkingLot = new ParkingLot(2);
+////        List<ParkingLot> parkingLots = new ArrayList<>();
+////        parkingLots.add(parkingLotA);
+////        parkingLots.add(parkingLotB);
+//        List<Car> cars = new ArrayList<>();
+//        for (int i = 0; i < 4; i++) {
+//            Car car = new Car();
+//            cars.add(car);
+//        }
+//        //when
+//        ParkingBoy parkingBoy = new ParkingBoy(firstParkingLot,secondParkingLot);
+////        parkingBoy.setParkingLots(parkingLots);
+//        List<CarTicket> tickets = new ArrayList<>();
+//        for (int i = 0; i < cars.size(); i++) {
+//            CarTicket ticket = parkingBoy.park(cars.get(i));
+//            tickets.add(ticket);
+//        }
+//        //then
+////        for (int i = 0; i < tickets.size(); i++) {
+////            assertEquals(cars.get(i),parkingBoy.fetch(tickets.get(i)));
+////        }
+//        assertEquals(cars.get(1), parkingBoy.fetch(tickets.get(1)));
+//    }
+
 
 }

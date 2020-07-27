@@ -7,7 +7,7 @@ import java.util.List;
 public class ParkingBoy implements Parkable {
     private List<ParkingLot> parkingLots = new ArrayList<>();
 
-    public ParkingBoy(ParkingLot parkingLot) {
+    public ParkingBoy(ParkingLot... parkingLot) {
         this.parkingLots = Arrays.asList(parkingLot);
     }
 
