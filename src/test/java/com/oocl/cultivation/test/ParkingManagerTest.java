@@ -26,4 +26,18 @@ public class ParkingManagerTest {
         assertNotNull(ticket2);
         assertNotNull(ticket3);
     }
+
+    @Test
+    void should_get_ticket_and_get_car_when_manager_park_and_fetch() {
+        //given
+        ParkingLot parkingLot=new ParkingLot(1);
+        ParkingManager parkingManager=new ParkingManager(parkingLot);
+        Car car=new Car();
+
+        //when
+        CarTicket ticket=parkingManager.parking(car);
+        Car fetchedCar=parkingManager.fetch(ticket);
+        //then
+        assertEquals(car,fetchedCar);
+    }
 }
