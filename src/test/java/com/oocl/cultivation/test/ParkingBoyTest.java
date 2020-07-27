@@ -75,19 +75,19 @@ class ParkingBoyTest {
         assertEquals(null, fetchedCar);
     }
 
-//    @Test
-//    void should_no_car_when_fetch_given_already_been_used_ticket() {
-//        //given
-//        Car car = new Car();
-//        ParkingBoy parkingBoy = new ParkingBoy();
-//        CarTicket ticketFirst = parkingBoy.park(car);
-//        parkingBoy.fetch(ticketFirst);
-//        //when
-//        Car fetchCar = parkingBoy.fetch(ticketFirst);
-//        //then
-//        assertEquals(null, fetchCar);
-//    }
-//
+    @Test
+    void should_no_car_when_fetch_given_already_been_used_ticket() {
+        //given
+        Car car = new Car();
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
+        CarTicket ticketFirst = parkingBoy.park(car);
+        parkingBoy.fetch(ticketFirst);
+        //when
+        Car fetchCar = parkingBoy.fetch(ticketFirst);
+        //then
+        assertEquals(null, fetchCar);
+    }
+
 //    @Test
 //    void should_get_no_ticket_when_park_no_position_given_car() {
 //        //given
