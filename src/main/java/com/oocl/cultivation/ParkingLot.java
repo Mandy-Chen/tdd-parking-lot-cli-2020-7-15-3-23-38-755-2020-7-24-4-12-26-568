@@ -27,7 +27,7 @@ public class ParkingLot implements Parkable {
     }
 
     @Override
-    public String park(Car car) {
+    public CarTicket park(Car car) {
         if(this.parkingRooms.size()>=this.totalPlaceNum){
             throw new IndexOutOfBoundsException("Parking Rooms are full!");
         }

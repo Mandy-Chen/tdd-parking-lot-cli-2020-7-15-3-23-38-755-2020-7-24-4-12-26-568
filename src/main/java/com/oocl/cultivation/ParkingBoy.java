@@ -1,25 +1,25 @@
 package com.oocl.cultivation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class ParkingBoy {
+public class ParkingBoy implements Parkable {
     private List<ParkingLot> parkingLot = new ArrayList<>();
-    private String id;
-    public void setId(String id) {
-        this.id = id;
+
+    public ParkingBoy(ParkingLot parkingLot) {
+        this.parkingLot= Arrays.asList(parkingLot);
     }
+
     public void setParkingLot(List<ParkingLot> parkingLot) {
         this.parkingLot = parkingLot;
     }
     public Car fetch(CarTicket ticket) {
         Car fetchedCar = null;
         if (ticket == null) {
-            System.out.println("Please provide your parking ticket.");
-            return null;
+            throw new IndexOutOfBoundsException("Please provide your parking ticket.");
         } else if (!IsContainCar(ticket)) {
-            System.out.println("Unrecognized parking ticket.");
-            return null;
+            throw new IndexOutOfBoundsException("Unrecognized parking ticket.");
         } else {
             for (int i = 0; i < parkingLot.size(); i++) {
                 if (parkingLot.get(i).getParkingRooms().get(ticket) != null) {
@@ -29,31 +29,20 @@ public class ParkingBoy {
             return fetchedCar;
         }
     }
-//todo
+
+    @Override
+    public int getAvailableNumber() {
+        return parkingLot.
+        return 0;
+    }
+
+    @Override
+    public boolean hasCar(CarTicket ticket) {
+        return false;
+    }
+
+    //todo
     public CarTicket park(Car car) {
-        if (id.equals("super smart parking boy")) {
-            int minParkingLotSub = 0;
-            for (int i = 0; i < parkingLot.size(); i++) {
-                if (parkingLot.get(i).getParkingRooms().size()*1000/parkingLot.get(i).getCapacity() <=parkingLot.get(minParkingLotSub).getParkingRooms().size()*1000/parkingLot.get(minParkingLotSub).getCapacity()) {
-                    minParkingLotSub = i;
-                }
-            }
-            CarTicket ticket = new CarTicket();
-            System.out.println(parkingLot.get(minParkingLotSub).getId());
-            parkingLot.get(minParkingLotSub).getParkingRooms().put(ticket, car);
-            return ticket;
-        }
-        if (id == "smart parking boy") {
-            int minParkingLotSub = 0;
-            for (int i = 0; i < parkingLot.size(); i++) {
-                if (parkingLot.get(i).getParkingRooms().size() <= parkingLot.get(minParkingLotSub).getParkingRooms().size()) {
-                    minParkingLotSub = i;
-                }
-            }
-            CarTicket ticket = new CarTicket();
-            parkingLot.get(minParkingLotSub).getParkingRooms().put(ticket, car);
-            return ticket;
-        }
         for (int i = 0; i < parkingLot.size(); i++) {
             if (parkingLot.get(i).getParkingRooms().size() < parkingLot.get(i).getCapacity()) {
                 CarTicket ticket = new CarTicket();
@@ -65,14 +54,5 @@ public class ParkingBoy {
         return null;
     }
 
-    public boolean IsContainCar(CarTicket ticket) {
-        Boolean flag = false;
-        for (int i = 0; i < parkingLot.size(); i++) {
-            if (parkingLot.get(i).getParkingRooms().containsKey(ticket)) {
-                flag = true;
-            }
-        }
-//        parkingLot.stream().anyMatch(parkingLot1 -> parkingLot1.getParkingRooms().containsKey(ticket));
-        return flag;
-    }
+
 }
