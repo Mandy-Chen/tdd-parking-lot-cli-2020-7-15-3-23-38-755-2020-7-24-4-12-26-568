@@ -66,24 +66,20 @@ public class ParkingLotTest {
         });
     }
 
-//    @Test
-//    void should_error_message_when_park_no_position_given_car() {
-//        //given
-//        ParkingBoy parkingBoy = new ParkingBoy();
-//        List<ParkingLot> parkingLots = new ArrayList<>();
-//        ParkingLot parkingLotA = new ParkingLot(totalPlaceNum, "A");
-//        parkingLots.add(parkingLotA);
-//        parkingBoy.setParkingLots(parkingLots);
-//        for (int i = 0; i < 10; i++) {
-//            Car car = new Car();
-//            parkingBoy.park(car);
-//        }
-//        //when
-//        parkingBoy.park(new Car());
-//        //then
-//        assertEquals("Not enough position.\n", systemOut());
-//    }
-//
+    @Test
+    void should_error_message_when_park_no_position_given_car() {
+        //given
+        ParkingLot parkingLot=new ParkingLot(1);
+        Car firstCar=new Car();
+        Car secondCar=new Car();
+        //when
+        parkingLot.park(firstCar);
+        //then
+        assertThrows(Exception.class,()->{
+            parkingLot.park(secondCar);
+        });
+    }
+
 //    @Test
 //    void should_in_order_when_park_given_two_parkingLot() {
 //        //given
