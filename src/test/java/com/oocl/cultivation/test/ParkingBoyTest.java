@@ -36,36 +36,23 @@ class ParkingBoyTest {
         assertNotNull(fetchedCar);
         assertEquals(car, fetchedCar);
     }
-//
-//    @Test
-//    void should_return_tickets_when_given_multiple_cars() {
-//        //given
-//        List<Car> cars = new ArrayList();
-//        for (int i = 0; i < 2; i++) {
-//            Car car = new Car();
-//            cars.add(car);
-//        }
-//
-//        //when
-//        ParkingBoy parkingBoy = new ParkingBoy();
-//        List<ParkingLot> parkingLots = new ArrayList<>();
-//        ParkingLot parkingLotA = new ParkingLot(totalPlaceNum, "A");
-//        parkingLots.add(parkingLotA);
-//        parkingBoy.setParkingLots(parkingLots);
-//        List<CarTicket> tickets = new ArrayList();
-//        List<Car> fetchCars = new ArrayList();
-//        for (int i = 0; i < cars.size(); i++) {
-//            CarTicket ticket = parkingBoy.park(cars.get(i));
-//            tickets.add(ticket);
-//            Car car = parkingBoy.fetch(ticket);
-//            fetchCars.add(car);
-//        }
-//
-//        //then
-//        assertNotNull(fetchCars);
-//        assertEquals(cars, fetchCars);
-//
-//    }
+
+    @Test
+    void should_return_tickets_when_given_multiple_cars() {
+        //given
+        List<Car> cars = new ArrayList();
+        Car firstCar=new Car();
+        Car secondCar=new Car();
+        //when
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(2));
+        CarTicket firstTicket=parkingBoy.park(firstCar);
+        CarTicket secondTicket=parkingBoy.park(secondCar);
+        Car firstFetchedCar=parkingBoy.fetch(firstTicket);
+        Car secondFetchedCar=parkingBoy.fetch(secondTicket);
+        //then
+        assertEquals(firstCar, firstFetchedCar);
+        assertEquals(secondCar, secondFetchedCar);
+    }
 //
 //    @Test
 //    void should_no_car_be_fetched_when_fetch_given_wrong_ticket() {
