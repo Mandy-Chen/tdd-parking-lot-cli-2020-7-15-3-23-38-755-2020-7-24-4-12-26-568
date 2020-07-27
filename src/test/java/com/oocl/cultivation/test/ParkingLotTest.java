@@ -30,7 +30,7 @@ public class ParkingLotTest {
 
 
     @Test
-    void should_error_message_when_fetch_given_parking_boy_does_not_provide_ticket() throws Exception  {
+    void should_error_message_when_fetch_given_parking_boy_does_not_provide_ticket()  {
         //given
         CarTicket ticket = new CarTicket();
         //when

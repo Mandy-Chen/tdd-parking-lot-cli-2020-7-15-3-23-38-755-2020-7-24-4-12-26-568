@@ -10,6 +10,9 @@ public class ParkingManager {
         this.parkables = Arrays.asList(parkables);
     }
     public  CarTicket parking(Car car){
+        if(parkables.stream().filter(this::isFull).findFirst().isEmpty()){
+            throw new IndexOutOfBoundsException("Parking failure");
+        }
         return parkables.stream().filter(this::isFull).findFirst().get().park(car);
     }
 
