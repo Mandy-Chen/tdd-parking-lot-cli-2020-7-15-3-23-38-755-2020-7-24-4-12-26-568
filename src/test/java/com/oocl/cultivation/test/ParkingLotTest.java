@@ -41,37 +41,31 @@ public class ParkingLotTest {
         });
     }
 
-//    @Test
-//    void should_error_message_when_fetch_given_ticket_has_been_used() {
-//        //given
-//        ParkingBoy parkingBoy = new ParkingBoy();
-//        List<ParkingLot> parkingLots = new ArrayList<>();
-//        ParkingLot parkingLotA = new ParkingLot(totalPlaceNum, "A");
-//        parkingLots.add(parkingLotA);
-//        parkingBoy.setParkingLots(parkingLots);
-//        Car car = new Car();
-//        CarTicket ticket = parkingBoy.park(car);
-//        parkingBoy.fetch(ticket);
-//        //when
-//        parkingBoy.fetch(ticket);
-//        //then
-//        assertEquals("Unrecognized parking ticket.\n", systemOut());
-//    }
-//
-//    @Test
-//    void should_error_message_when_fetch_given_customer_not_provide_ticket() {
-//        //given
-//        ParkingBoy parkingBoy = new ParkingBoy();
-//        List<ParkingLot> parkingLots = new ArrayList<>();
-//        ParkingLot parkingLotA = new ParkingLot(totalPlaceNum, "A");
-//        parkingLots.add(parkingLotA);
-//        parkingBoy.setParkingLots(parkingLots);
-//        //when
-//        parkingBoy.fetch(null);
-//        //then
-//        assertEquals("Please provide your parking ticket.\n", systemOut());
-//    }
-//
+    @Test
+    void should_error_message_when_fetch_given_ticket_has_been_used() {
+        //given
+        ParkingLot parkingLot=new ParkingLot(1);
+        Car car = new Car();
+        CarTicket ticket = parkingLot.park(car);
+        parkingLot.fetch(ticket);
+        //when
+        //then
+        assertThrows(Exception.class,()->{
+            parkingLot.fetch(ticket);
+        });
+    }
+
+    @Test
+    void should_error_message_when_fetch_given_customer_not_provide_ticket() {
+        //given
+        ParkingLot parkingLot =new ParkingLot(1);
+        //when
+        //then
+        assertThrows(Exception.class,()->{
+            parkingLot.fetch(null);
+        });
+    }
+
 //    @Test
 //    void should_error_message_when_park_no_position_given_car() {
 //        //given

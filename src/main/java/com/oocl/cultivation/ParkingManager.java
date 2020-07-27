@@ -19,7 +19,7 @@ public class ParkingManager {
     private boolean isFull(Parkable parkable) {
         return parkable.getAvailableNumber()>0;
     }
-    public Car  fetch(CarTicket ticket){
+    public Car fetch(CarTicket ticket){
         if(parkables.stream().filter(parkable -> parkable.hasCar(ticket)).findFirst().isEmpty()){
             throw new IndexOutOfBoundsException("Parking failure");
         }
