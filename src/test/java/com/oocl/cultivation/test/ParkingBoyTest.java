@@ -24,22 +24,18 @@ class ParkingBoyTest {
         assertNotNull(ticket);
     }
 
-//    @Test
-//    void should_fetch_car_when_fetch_from_parking_lot_given_car_ticket() {
-//        //given
-//        Car car = new Car();
-//        //when
-//        ParkingBoy parkingBoy = new ParkingBoy();
-//        List<ParkingLot> parkingLots = new ArrayList<>();
-//        ParkingLot parkingLotA = new ParkingLot(totalPlaceNum, "A");
-//        parkingLots.add(parkingLotA);
-//        parkingBoy.setParkingLots(parkingLots);
-//        CarTicket ticket = parkingBoy.park(car);
-//        Car fetchedCar = parkingBoy.fetch(ticket);
-//        //then
-//        assertNotNull(fetchedCar);
-//        assertEquals(car, fetchedCar);
-//    }
+    @Test
+    void should_fetch_car_when_fetch_from_parking_lot_given_car_ticket() {
+        //given
+        Car car = new Car();
+        //when
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
+        CarTicket ticket = parkingBoy.park(car);
+        Car fetchedCar = parkingBoy.fetch(ticket);
+        //then
+        assertNotNull(fetchedCar);
+        assertEquals(car, fetchedCar);
+    }
 //
 //    @Test
 //    void should_return_tickets_when_given_multiple_cars() {

@@ -13,26 +13,26 @@ public class ParkingBoy implements Parkable {
 
     public Car fetch(CarTicket ticket) {
         Car fetchedCar = null;
-        if (ticket == null) {
-            throw new IndexOutOfBoundsException("Please provide your parking ticket.");
-        } else if (!hasCar(ticket)) {
-            throw new IndexOutOfBoundsException("Unrecognized parking ticket.");
-        } else {
-            for (int i = 0; i < parkingLots.size(); i++) {
-                if (parkingLots.get(i).getParkingRooms().get(ticket) != null) {
-                    fetchedCar = parkingLots.get(i).getParkingRooms().remove(ticket);
-                }
-            }
-            return fetchedCar;
+//        if (ticket == null) {
+//            throw new IndexOutOfBoundsException("Please provide your parking ticket.");
+//        } else if (!hasCar(ticket)) {
+//            throw new IndexOutOfBoundsException("Unrecognized parking ticket.");
+//        } else {
+        for (int i = 0; i < parkingLots.size(); i++) {
+//            if (parkingLots.get(i).getParkingRooms().get(ticket) != null) {
+//                fetchedCar = parkingLots.get(i).getParkingRooms().remove(ticket);
+//            }
+            fetchedCar=parkingLots.get(i).fetch(ticket);
         }
+        return fetchedCar;
     }
 
     @Override
     public int getAvailableNumber() {
-        int getAllAvailableNumber=0;
+        int getAllAvailableNumber = 0;
         for (int i = 0; i < parkingLots.size(); i++) {
-            if (parkingLots.get(i).getAvailableNumber()>0) {
-                getAllAvailableNumber +=parkingLots.get(i).getAvailableNumber();
+            if (parkingLots.get(i).getAvailableNumber() > 0) {
+                getAllAvailableNumber += parkingLots.get(i).getAvailableNumber();
             }
         }
         return getAllAvailableNumber;
@@ -53,7 +53,7 @@ public class ParkingBoy implements Parkable {
 //               parkingLots.get(i).park(car);
 //            }
 //        }
-        return parkingLots.stream().filter(parkingLot ->  parkingLot.getAvailableNumber()>0).findFirst().get().park(car);
+        return parkingLots.stream().filter(parkingLot -> parkingLot.getAvailableNumber() > 0).findFirst().get().park(car);
     }
 
 
