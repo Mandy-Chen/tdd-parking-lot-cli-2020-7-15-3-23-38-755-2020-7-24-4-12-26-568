@@ -37,7 +37,7 @@ public class ParkingLot implements Parkable {
     }
 
     @Override
-    public Car fetch(String ticket) {
+    public Car fetch(CarTicket ticket) {
         return parkingRooms.remove(ticket);
     }
 
@@ -47,7 +47,7 @@ public class ParkingLot implements Parkable {
     }
 
     @Override
-    public boolean hasCar(String ticket) {
+    public boolean hasCar(CarTicket ticket) {
         return parkingRooms.containsKey(ticket);
     }
 }

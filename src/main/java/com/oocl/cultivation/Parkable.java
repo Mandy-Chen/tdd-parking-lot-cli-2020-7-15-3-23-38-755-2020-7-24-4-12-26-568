@@ -2,7 +2,7 @@ package com.oocl.cultivation;
 
 public interface Parkable {
     String park(Car car);
-    Car fetch(String ticket);
+    Car fetch(CarTicket ticket);
     int getAvailableNumber();
-    boolean hasCar(String ticket);
+    boolean hasCar(CarTicket ticket);
 }
