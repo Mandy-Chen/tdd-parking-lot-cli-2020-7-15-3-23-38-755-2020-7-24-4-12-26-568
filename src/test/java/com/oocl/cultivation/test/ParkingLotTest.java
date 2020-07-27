@@ -18,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ParkingLotTest {
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     public ByteArrayOutputStream out = null;
-
     @BeforeEach
     public void setup() {
         System.setOut(new PrintStream(outContent));
@@ -30,19 +29,18 @@ public class ParkingLotTest {
 
 
 
-//    @Test
-//    void should_error_message_when_fetch_given_parking_boy_does_not_provide_ticket() {
-//        //given
-//
-//        CarTicket ticket = new CarTicket();
-//        //when
-//        ParkingBoy parkingBoy = new ParkingBoy();
-//        parkingBoy.fetch(ticket);
-//        //then
-//        assertEquals("Unrecognized parking ticket.\n", systemOut());
-//
-//    }
-//
+    @Test
+    void should_error_message_when_fetch_given_parking_boy_does_not_provide_ticket() throws Exception  {
+        //given
+        CarTicket ticket = new CarTicket();
+        //when
+        ParkingLot parkingLot=new ParkingLot(1);
+        //then
+        assertThrows(Exception.class,()->{
+            parkingLot.fetch(ticket);
+        });
+    }
+
 //    @Test
 //    void should_error_message_when_fetch_given_ticket_has_been_used() {
 //        //given

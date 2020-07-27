@@ -36,21 +36,21 @@ public class ParkingLot implements Parkable {
 
     @Override
     public Car fetch(CarTicket ticket) {
-//        if (ticket == null) {
-//            throw new IndexOutOfBoundsException("Please provide your parking ticket.");
-//        }
-//        if (!hasCar(ticket)) {
-//            throw new IndexOutOfBoundsException("Unrecognized parking ticket.");
-//        }
-//        else {
-//            parkingRooms.remove(ticket);
-////            for (int i = 0; i < parkingLots.size(); i++) {
-////                if (parkingLots.get(i).getParkingRooms().get(ticket) != null) {
-////                    fetchedCar = parkingLots.get(i).getParkingRooms().remove(ticket);
-////                }
-////            }
-////            return fetchedCar;
-//        }
+        if (ticket == null) {
+            throw new IndexOutOfBoundsException("Please provide your parking ticket.");
+        }
+        if (!hasCar(ticket)) {
+            throw new IndexOutOfBoundsException("Unrecognized parking ticket.");
+        }
+        else {
+            parkingRooms.remove(ticket);
+//            for (int i = 0; i < parkingLots.size(); i++) {
+//                if (parkingLots.get(i).getParkingRooms().get(ticket) != null) {
+//                    fetchedCar = parkingLots.get(i).getParkingRooms().remove(ticket);
+//                }
+//            }
+//            return fetchedCar;
+        }
         return parkingRooms.remove(ticket);
     }
 
