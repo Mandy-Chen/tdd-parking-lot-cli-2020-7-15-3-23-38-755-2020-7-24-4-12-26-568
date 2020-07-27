@@ -6,19 +6,12 @@ import java.util.List;
 public class ParkingBoy {
     private List<ParkingLot> parkingLot = new ArrayList<>();
     private String id;
-
-
-
     public void setId(String id) {
         this.id = id;
     }
-
-
-
     public void setParkingLot(List<ParkingLot> parkingLot) {
         this.parkingLot = parkingLot;
     }
-
     public Car fetch(CarTicket ticket) {
         Car fetchedCar = null;
         if (ticket == null) {
@@ -36,9 +29,9 @@ public class ParkingBoy {
             return fetchedCar;
         }
     }
-
+//todo
     public CarTicket park(Car car) {
-        if (id == "super smart parking boy") {
+        if (id.equals("super smart parking boy")) {
             int minParkingLotSub = 0;
             for (int i = 0; i < parkingLot.size(); i++) {
                 if (parkingLot.get(i).getParkingRooms().size()*1000/parkingLot.get(i).getCapacity() <=parkingLot.get(minParkingLotSub).getParkingRooms().size()*1000/parkingLot.get(minParkingLotSub).getCapacity()) {
@@ -79,6 +72,7 @@ public class ParkingBoy {
                 flag = true;
             }
         }
+//        parkingLot.stream().anyMatch(parkingLot1 -> parkingLot1.getParkingRooms().containsKey(ticket));
         return flag;
     }
 }
