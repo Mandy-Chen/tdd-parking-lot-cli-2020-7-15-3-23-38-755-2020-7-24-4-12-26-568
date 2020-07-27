@@ -40,7 +40,6 @@ class ParkingBoyTest {
     @Test
     void should_return_tickets_when_given_multiple_cars() {
         //given
-        List<Car> cars = new ArrayList();
         Car firstCar=new Car();
         Car secondCar=new Car();
         //when
@@ -53,18 +52,18 @@ class ParkingBoyTest {
         assertEquals(firstCar, firstFetchedCar);
         assertEquals(secondCar, secondFetchedCar);
     }
-//
-//    @Test
-//    void should_no_car_be_fetched_when_fetch_given_wrong_ticket() {
-//        //given
-//        CarTicket ticket = new CarTicket();
-//        //when
-//        ParkingBoy parkingBoy = new ParkingBoy();
-//        Car fetchedCar = parkingBoy.fetch(ticket);
-//        //then
-//        assertEquals(null, fetchedCar);
-//    }
-//
+
+    @Test
+    void should_no_car_be_fetched_when_fetch_given_wrong_ticket() {
+        //given
+        CarTicket ticket = new CarTicket();
+        //when
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
+        Car fetchedCar = parkingBoy.fetch(ticket);
+        //then
+        assertEquals(null, fetchedCar);
+    }
+
 //    @Test
 //    void should_no_car_be_fetched_when_fetch_given_no_ticket() {
 //        //given
