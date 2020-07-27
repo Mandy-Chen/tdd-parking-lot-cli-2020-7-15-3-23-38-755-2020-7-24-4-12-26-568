@@ -14,11 +14,12 @@ public class ParkingBoy implements Parkable {
     public void setParkingLots(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
     }
+
     public Car fetch(CarTicket ticket) {
         Car fetchedCar = null;
         if (ticket == null) {
             throw new IndexOutOfBoundsException("Please provide your parking ticket.");
-        } else if (!IsContainCar(ticket)) {
+        } else if (!hasCar(ticket)) {
             throw new IndexOutOfBoundsException("Unrecognized parking ticket.");
         } else {
             for (int i = 0; i < parkingLots.size(); i++) {
@@ -30,15 +31,16 @@ public class ParkingBoy implements Parkable {
         }
     }
 
+    //todo
     @Override
     public int getAvailableNumber() {
-//        return parkingLot.stream().filter(parkingLot1 -> )
-        return 0;
+        return 1;
     }
 
     @Override
     public boolean hasCar(CarTicket ticket) {
-        return false;
+        Car car = (Car) parkingLots.stream().filter(parkingLot -> parkingLot.getParkingRooms().get(ticket) == null);
+        return car.equals(null);
     }
 
     //todo

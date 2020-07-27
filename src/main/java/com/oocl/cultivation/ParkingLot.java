@@ -33,8 +33,7 @@ public class ParkingLot implements Parkable {
         }
         CarTicket ticket=new CarTicket();
         this.parkingRooms.put(ticket,car);
-        //todo
-        return null;
+        return ticket;
     }
 
     @Override
