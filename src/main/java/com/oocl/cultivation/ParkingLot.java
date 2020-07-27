@@ -28,11 +28,12 @@ public class ParkingLot implements Parkable {
 
     @Override
     public CarTicket park(Car car) {
-        if(this.parkingRooms.size()>=this.totalPlaceNum){
+        if(getAvailableNumber()<=0){
             throw new IndexOutOfBoundsException("Parking Rooms are full!");
         }
         CarTicket ticket=new CarTicket();
         this.parkingRooms.put(ticket,car);
+        //todo
         return null;
     }
 

@@ -5,14 +5,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ParkingBoy implements Parkable {
-    private List<ParkingLot> parkingLot = new ArrayList<>();
+    private List<ParkingLot> parkingLots = new ArrayList<>();
 
     public ParkingBoy(ParkingLot parkingLot) {
-        this.parkingLot= Arrays.asList(parkingLot);
+        this.parkingLots = Arrays.asList(parkingLot);
     }
 
-    public void setParkingLot(List<ParkingLot> parkingLot) {
-        this.parkingLot = parkingLot;
+    public void setParkingLots(List<ParkingLot> parkingLots) {
+        this.parkingLots = parkingLots;
     }
     public Car fetch(CarTicket ticket) {
         Car fetchedCar = null;
@@ -21,9 +21,9 @@ public class ParkingBoy implements Parkable {
         } else if (!IsContainCar(ticket)) {
             throw new IndexOutOfBoundsException("Unrecognized parking ticket.");
         } else {
-            for (int i = 0; i < parkingLot.size(); i++) {
-                if (parkingLot.get(i).getParkingRooms().get(ticket) != null) {
-                    fetchedCar = parkingLot.get(i).getParkingRooms().remove(ticket);
+            for (int i = 0; i < parkingLots.size(); i++) {
+                if (parkingLots.get(i).getParkingRooms().get(ticket) != null) {
+                    fetchedCar = parkingLots.get(i).getParkingRooms().remove(ticket);
                 }
             }
             return fetchedCar;
@@ -32,7 +32,7 @@ public class ParkingBoy implements Parkable {
 
     @Override
     public int getAvailableNumber() {
-        return parkingLot.
+//        return parkingLot.stream().filter(parkingLot1 -> )
         return 0;
     }
 
@@ -43,10 +43,10 @@ public class ParkingBoy implements Parkable {
 
     //todo
     public CarTicket park(Car car) {
-        for (int i = 0; i < parkingLot.size(); i++) {
-            if (parkingLot.get(i).getParkingRooms().size() < parkingLot.get(i).getCapacity()) {
+        for (int i = 0; i < parkingLots.size(); i++) {
+            if (parkingLots.get(i).getParkingRooms().size() < parkingLots.get(i).getCapacity()) {
                 CarTicket ticket = new CarTicket();
-                parkingLot.get(i).getParkingRooms().put(ticket, car);
+                parkingLots.get(i).getParkingRooms().put(ticket, car);
                 return ticket;
             }
         }

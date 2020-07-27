@@ -24,7 +24,7 @@ class ParkingBoyFacts {
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(parkingLotA);
         parkingLots.add(parkingLotB);
-        parkingBoy.setParkingLot(parkingLots);
+        parkingBoy.setParkingLots(parkingLots);
         //when
         List<Car> cars=new ArrayList<>();
         List<CarTicket> tickets=new ArrayList<>();
