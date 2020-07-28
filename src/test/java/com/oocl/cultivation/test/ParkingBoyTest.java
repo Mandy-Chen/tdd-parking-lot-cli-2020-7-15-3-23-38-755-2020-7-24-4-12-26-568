@@ -61,7 +61,7 @@ class ParkingBoyTest {
         Car fetchedCar = parkingBoy.fetch(ticket);
         //then
         assertNull(fetchedCar);
-        assertEquals("Unrecognized parking ticket.", parkingBoy.getMessage());
+
     }
 
     @Test

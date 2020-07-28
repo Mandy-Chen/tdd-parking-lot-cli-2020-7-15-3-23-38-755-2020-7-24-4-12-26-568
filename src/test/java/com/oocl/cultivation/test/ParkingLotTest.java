@@ -2,113 +2,61 @@ package com.oocl.cultivation.test;
 
 import com.oocl.cultivation.Car;
 import com.oocl.cultivation.CarTicket;
-import com.oocl.cultivation.ParkingBoy;
 import com.oocl.cultivation.ParkingLot;
 import com.oocl.cultivation.exception.UnrecognizedTicketException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
 public class ParkingLotTest {
-    private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    public ByteArrayOutputStream out = null;
-    @BeforeEach
-    public void setup() {
-        System.setOut(new PrintStream(outContent));
-    }
-
-    private String systemOut() {
-        return outContent.toString();
-    }
-
 
     @Test
-    void should_error_message_when_fetch_given_parking_boy_does_not_provide_ticket()  {
+    void should_error_message_when_fetch_given_parking_boy_does_not_provide_ticket() {
         //given
         CarTicket ticket = new CarTicket();
         //when
-        ParkingLot parkingLot=new ParkingLot(1);
+        ParkingLot parkingLot = new ParkingLot(1);
+        parkingLot.fetch(ticket);
         //then
-        assertThrows(Exception.class,()->{
-            parkingLot.fetch(ticket);
-        });
+        assertEquals("Unrecognized parking ticket.", parkingLot.getMessage());
     }
 
     @Test
     void should_error_message_when_fetch_given_ticket_has_been_used() throws UnrecognizedTicketException {
         //given
-        ParkingLot parkingLot=new ParkingLot(1);
+        ParkingLot parkingLot = new ParkingLot(1);
         Car car = new Car();
+        //when
         CarTicket ticket = parkingLot.park(car);
         parkingLot.fetch(ticket);
-        //when
+        parkingLot.fetch(ticket);
         //then
-        assertThrows(Exception.class,()->{
-            parkingLot.fetch(ticket);
-        });
+        assertEquals("Unrecognized parking ticket.", parkingLot.getMessage());
     }
 
     @Test
     void should_error_message_when_fetch_given_customer_not_provide_ticket() {
         //given
-        ParkingLot parkingLot =new ParkingLot(1);
+        ParkingLot parkingLot = new ParkingLot(1);
         //when
+        parkingLot.fetch(null);
         //then
-        assertThrows(Exception.class,()->{
-            parkingLot.fetch(null);
-        });
+        assertEquals("Please provide your parking ticket.", parkingLot.getMessage());
     }
 
     @Test
     void should_error_message_when_park_no_position_given_car() {
         //given
-        ParkingLot parkingLot=new ParkingLot(1);
-        Car firstCar=new Car();
-        Car secondCar=new Car();
+        ParkingLot parkingLot = new ParkingLot(1);
+        Car firstCar = new Car();
+        Car secondCar = new Car();
         //when
         parkingLot.park(firstCar);
+        parkingLot.park(secondCar);
         //then
-        assertThrows(Exception.class,()->{
-            parkingLot.park(secondCar);
-        });
+        assertEquals("Not enough position.", parkingLot.getMessage());
     }
 
 
-
-//    @Test
-//    void should_park_lot_which_contains_more_empty_position_when_smart_park_given_super_smart_parking_boy() {
-//        //given
-//        ParkingBoy parkingBoy=new ParkingBoy();
-//        parkingBoy.setId("super smart parking boy");
-//        ParkingLot parkingLotA = new ParkingLot(totalPlaceNum, "A");
-//        ParkingLot parkingLotB = new ParkingLot(totalPlaceNum, "B");
-//        parkingLotA.setCapacity(10);
-//        parkingLotB.setCapacity(20);
-//        List<ParkingLot> parkingLots = new ArrayList<>();
-//        parkingLots.add(parkingLotA);
-//        parkingLots.add(parkingLotB);
-//        parkingBoy.setParkingLots(parkingLots);
-//        //when
-//        List<Car> cars=new ArrayList<>();
-//        List<CarTicket> tickets=new ArrayList<>();
-//        for (int i = 0; i < 5; i++) {
-//            Car car=new Car();
-//            cars.add(car);
-//            CarTicket ticket=parkingBoy.park(car);
-//            tickets.add(ticket);
-//        }
-//        //then
-//        assertEquals(cars.get(0),parkingLotB.getParkingRooms().get(tickets.get(0)));
-//        assertEquals(cars.get(1),parkingLotA.getParkingRooms().get(tickets.get(1)));
-//        assertEquals(cars.get(2),parkingLotB.getParkingRooms().get(tickets.get(2)));
-//        assertEquals(cars.get(3),parkingLotB.getParkingRooms().get(tickets.get(3)));
-//        assertEquals(cars.get(4),parkingLotA.getParkingRooms().get(tickets.get(4)));
-//    }
 }

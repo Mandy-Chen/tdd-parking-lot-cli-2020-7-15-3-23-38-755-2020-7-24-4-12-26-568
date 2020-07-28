@@ -44,10 +44,11 @@ public class ParkingLot implements Parkable {
         Car fetchedCar = null;
         if (ticket == null) {
             message="Please provide your parking ticket.";
-        }
-        fetchedCar = parkingRooms.remove(ticket);
-        if (fetchedCar == null) {
-            message="Unrecognized parking ticket.";
+        }else {
+            fetchedCar = parkingRooms.remove(ticket);
+            if (fetchedCar == null) {
+                message = "Unrecognized parking ticket.";
+            }
         }
 //        else {
 //            parkingRooms.remove(ticket);
