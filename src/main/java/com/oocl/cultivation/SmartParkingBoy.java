@@ -1,5 +1,8 @@
 package com.oocl.cultivation;
 
+import com.oocl.cultivation.exception.PleaseProvideTicketException;
+import com.oocl.cultivation.exception.UnrecognizedTicketException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +29,7 @@ public class SmartParkingBoy implements Parkable {
     }
 
     @Override
-    public Car fetch(CarTicket ticket) {
+    public Car fetch(CarTicket ticket)  {
         Car fetchedCar = null;
         for (int i = 0; i < parkingLots.size(); i++) {
             fetchedCar=parkingLots.get(i).fetch(ticket);

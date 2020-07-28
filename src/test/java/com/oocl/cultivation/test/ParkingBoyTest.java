@@ -4,6 +4,8 @@ import com.oocl.cultivation.Car;
 import com.oocl.cultivation.CarTicket;
 import com.oocl.cultivation.ParkingBoy;
 import com.oocl.cultivation.ParkingLot;
+import com.oocl.cultivation.exception.PleaseProvideTicketException;
+import com.oocl.cultivation.exception.UnrecognizedTicketException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -58,7 +60,8 @@ class ParkingBoyTest {
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
         Car fetchedCar = parkingBoy.fetch(ticket);
         //then
-        assertEquals(null, fetchedCar);
+        assertNull(fetchedCar);
+        assertEquals("Unrecognized parking ticket.", parkingBoy.getMessage());
     }
 
     @Test
@@ -69,7 +72,7 @@ class ParkingBoyTest {
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
         Car fetchedCar = parkingBoy.fetch(null);
         //then
-        assertEquals(null, fetchedCar);
+        assertNull(fetchedCar);
     }
 
     @Test
@@ -82,7 +85,7 @@ class ParkingBoyTest {
         //when
         Car fetchCar = parkingBoy.fetch(ticketFirst);
         //then
-        assertEquals(null, fetchCar);
+        assertNull(fetchCar);
     }
 
     @Test

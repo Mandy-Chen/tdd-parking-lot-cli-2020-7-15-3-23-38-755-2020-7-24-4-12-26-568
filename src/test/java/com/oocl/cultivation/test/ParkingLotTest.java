@@ -4,6 +4,7 @@ import com.oocl.cultivation.Car;
 import com.oocl.cultivation.CarTicket;
 import com.oocl.cultivation.ParkingBoy;
 import com.oocl.cultivation.ParkingLot;
+import com.oocl.cultivation.exception.UnrecognizedTicketException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +29,6 @@ public class ParkingLotTest {
     }
 
 
-
     @Test
     void should_error_message_when_fetch_given_parking_boy_does_not_provide_ticket()  {
         //given
@@ -42,7 +42,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_error_message_when_fetch_given_ticket_has_been_used() {
+    void should_error_message_when_fetch_given_ticket_has_been_used() throws UnrecognizedTicketException {
         //given
         ParkingLot parkingLot=new ParkingLot(1);
         Car car = new Car();
