@@ -103,15 +103,11 @@ class ParkingBoyTest {
         //then
         assertNull(parkingBoy.park(secondCar));
     }
-    //todo
     @Test
     void should_in_order_when_park_given_two_parkingLot() {
         //given
         ParkingLot firstParkingLot = new ParkingLot(2);
         ParkingLot secondParkingLot = new ParkingLot(2);
-//        List<ParkingLot> parkingLots = new ArrayList<>();
-//        parkingLots.add(parkingLotA);
-//        parkingLots.add(parkingLotB);
         List<Car> cars = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             Car car = new Car();
@@ -119,17 +115,14 @@ class ParkingBoyTest {
         }
         //when
         ParkingBoy parkingBoy = new ParkingBoy(firstParkingLot,secondParkingLot);
-//        parkingBoy.setParkingLots(parkingLots);
         List<CarTicket> tickets = new ArrayList<>();
         for (int i = 0; i < cars.size(); i++) {
             CarTicket ticket = parkingBoy.park(cars.get(i));
             tickets.add(ticket);
         }
         //then
-        for (int i = 0; i < tickets.size(); i++) {
-            assertEquals(cars.get(i),parkingBoy.fetch(tickets.get(i)));
-        }
         assertEquals(cars.get(1), firstParkingLot.fetch(tickets.get(1)));
+        assertEquals(cars.get(2), secondParkingLot.fetch(tickets.get(2)));
     }
 
 
