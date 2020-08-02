@@ -4,14 +4,14 @@ import com.oocl.cultivation.Car;
 import com.oocl.cultivation.CarTicket;
 import com.oocl.cultivation.ParkingBoy;
 import com.oocl.cultivation.ParkingLot;
-import com.oocl.cultivation.exception.PleaseProvideTicketException;
-import com.oocl.cultivation.exception.UnrecognizedTicketException;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class ParkingBoyTest {
     @Test
@@ -20,6 +20,7 @@ class ParkingBoyTest {
         ParkingLot parkingLot = new ParkingLot(1);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         Car car = new Car();
+
         //when
         CarTicket ticket = parkingBoy.park(car);
         //then
@@ -103,6 +104,7 @@ class ParkingBoyTest {
         //then
         assertNull(parkingBoy.park(secondCar));
     }
+
     @Test
     void should_in_order_when_park_given_two_parkingLot() {
         //given
@@ -114,7 +116,7 @@ class ParkingBoyTest {
             cars.add(car);
         }
         //when
-        ParkingBoy parkingBoy = new ParkingBoy(firstParkingLot,secondParkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(firstParkingLot, secondParkingLot);
         List<CarTicket> tickets = new ArrayList<>();
         for (int i = 0; i < cars.size(); i++) {
             CarTicket ticket = parkingBoy.park(cars.get(i));

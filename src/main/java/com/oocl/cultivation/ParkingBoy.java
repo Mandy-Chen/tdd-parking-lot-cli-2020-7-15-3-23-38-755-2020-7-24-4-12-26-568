@@ -1,8 +1,4 @@
 package com.oocl.cultivation;
-
-import com.oocl.cultivation.exception.PleaseProvideTicketException;
-import com.oocl.cultivation.exception.UnrecognizedTicketException;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,11 +36,9 @@ public class ParkingBoy implements Parkable {
                 return true;
             }
         }
-//        Car car = (Car) parkingLots.stream().filter(parkingLot -> parkingLot.getParkingRooms().get(ticket) != null);
         return false;
     }
 
-    //todo
     public CarTicket park(Car car) {
         if(getAvailableNumber()>0){
             return parkingLots.stream().filter(parkingLot -> parkingLot.getAvailableNumber() > 0).findFirst().get().park(car);

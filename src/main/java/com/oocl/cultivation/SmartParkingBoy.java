@@ -1,25 +1,23 @@
 package com.oocl.cultivation;
 
-import com.oocl.cultivation.exception.PleaseProvideTicketException;
-import com.oocl.cultivation.exception.UnrecognizedTicketException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class SmartParkingBoy implements Parkable {
     private List<ParkingLot> parkingLots = new ArrayList<>();
 
-    public SmartParkingBoy(ParkingLot parkingLot) {
+    public SmartParkingBoy(ParkingLot... parkingLot) {
         this.parkingLots = Arrays.asList(parkingLot);
     }
 
     @Override
     public CarTicket park(Car car) {
-
         int minParkingLotSub = 0;
         for (int i = 0; i < parkingLots.size(); i++) {
-            if (parkingLots.get(i).getParkingRooms().size() <= parkingLots.get(minParkingLotSub).getParkingRooms().size()) {
+            if (parkingLots.get(i).getAvailableNumber() >= parkingLots.get(minParkingLotSub).getAvailableNumber()) {
                 minParkingLotSub = i;
             }
         }
@@ -41,6 +39,7 @@ public class SmartParkingBoy implements Parkable {
     public int getAvailableNumber() {
         return 0;
     }
+
 
     @Override
     public boolean hasCar(CarTicket ticket) {
