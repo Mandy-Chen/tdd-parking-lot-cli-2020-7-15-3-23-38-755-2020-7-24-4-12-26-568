@@ -1,7 +1,5 @@
 package com.oocl.cultivation;
 
-import com.oocl.cultivation.exception.PleaseProvideTicketException;
-import com.oocl.cultivation.exception.UnrecognizedTicketException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,8 +8,8 @@ import java.util.List;
 public class SuperSmartParkingBoy implements Parkable {
 
     private List<ParkingLot> parkingLots = new ArrayList<>();
-    public SuperSmartParkingBoy(ParkingLot parkingLot) {
-        this.parkingLots= Arrays.asList(parkingLot);
+    public SuperSmartParkingBoy(ParkingLot... parkingLot) {
+        this.parkingLots = Arrays.asList(parkingLot);
     }
 
 

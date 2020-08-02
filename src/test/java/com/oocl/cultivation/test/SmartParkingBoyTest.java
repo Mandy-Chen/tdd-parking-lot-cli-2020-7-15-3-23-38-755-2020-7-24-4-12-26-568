@@ -30,6 +30,4 @@ public class SmartParkingBoyTest {
         assertEquals(cars.get(2), secondParkingLot.fetch(tickets.get(2)));
         assertEquals(cars.get(3), firstParkingLot.fetch(tickets.get(3)));
     }
-
-
 }
