@@ -37,11 +37,22 @@ public class SuperSmartParkingBoy implements Parkable {
 
     @Override
     public int getAvailableNumber() {
-        return 0;
+        int getAllAvailableNumber = 0;
+        for (int i = 0; i < parkingLots.size(); i++) {
+            if (parkingLots.get(i).getAvailableNumber() > 0) {
+                getAllAvailableNumber += parkingLots.get(i).getAvailableNumber();
+            }
+        }
+        return getAllAvailableNumber;
     }
 
     @Override
     public boolean hasCar(CarTicket ticket) {
+        for (int i = 0; i < parkingLots.size(); i++) {
+            if (parkingLots.get(i).getParkingRooms().get(ticket) != null) {
+                return true;
+            }
+        }
         return false;
     }
 }

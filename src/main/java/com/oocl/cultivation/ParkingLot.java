@@ -50,15 +50,6 @@ public class ParkingLot implements Parkable {
                 message = "Unrecognized parking ticket.";
             }
         }
-//        else {
-//            parkingRooms.remove(ticket);
-//            for (int i = 0; i < parkingLots.size(); i++) {
-//                if (parkingLots.get(i).getParkingRooms().get(ticket) != null) {
-//                    fetchedCar = parkingLots.get(i).getParkingRooms().remove(ticket);
-//                }
-//            }
-//            return fetchedCar;
-//        }
         return fetchedCar;
     }
 

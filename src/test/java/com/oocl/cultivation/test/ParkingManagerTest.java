@@ -1,13 +1,11 @@
 package com.oocl.cultivation.test;
 
 import com.oocl.cultivation.*;
-import com.oocl.cultivation.exception.UnrecognizedTicketException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingManagerTest {
-    //todo
     @Test
     void should_parking_the_cars_when_manager_manage_a_parking_lot_and_2_parking_boy() {
         //given
@@ -15,17 +13,19 @@ public class ParkingManagerTest {
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
         SmartParkingBoy smartParkingBoy = new SmartParkingBoy(new ParkingLot(1));
         ParkingManager parkingManager = new ParkingManager(parkingBoy, parkingLot, smartParkingBoy);
-        Car car = new Car();
+        Car firstCar = new Car();
+        Car secondCar = new Car();
+        Car thirdCar = new Car();
 
         //when
-        CarTicket ticket1 = parkingManager.parking(car);
-        CarTicket ticket2 = parkingManager.parking(car);
-//        CarTicket ticket3 = parkingManager.parking(car);
+        CarTicket ticket1 = parkingManager.parking(firstCar);
+        CarTicket ticket2 = parkingManager.parking(secondCar);
+        CarTicket ticket3 = parkingManager.parking(thirdCar);
 
         //then
         assertNotNull(ticket1);
         assertNotNull(ticket2);
-//        assertNotNull(ticket3);
+        assertNotNull(ticket3);
     }
 
     @Test
@@ -42,29 +42,29 @@ public class ParkingManagerTest {
     }
 
     @Test
-    void should_return_error_message_when_manager_manage_parking_boy_to_park() throws Exception{
+    void should_return_error_message_when_manager_manage_parking_boy_to_park() throws Exception {
         //given
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
         ParkingManager parkingManager = new ParkingManager(parkingBoy);
         Car firstCar = new Car();
-        Car secondCar=new Car();
+        Car secondCar = new Car();
         //when
         parkingManager.parking(firstCar);
+        parkingManager.parking(secondCar);
         //then
-        assertThrows(Exception.class,()->{
-            parkingManager.parking(secondCar);
-        });
+        assertEquals("Parking failure.", parkingManager.getMessage());
+
     }
+
     @Test
-    void should_return_error_message_when_manager_manage_parking_boy_to_fetch() throws Exception{
+    void should_return_error_message_when_manager_manage_parking_boy_to_fetch() throws Exception {
         //given
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
         ParkingManager parkingManager = new ParkingManager(parkingBoy);
-        CarTicket ticket=new CarTicket();
+        CarTicket ticket = new CarTicket();
         //when
+        parkingManager.fetch(ticket);
         //then
-        assertThrows(Exception.class,()->{
-            parkingManager.fetch(ticket);
-        });
+        assertEquals("Fetching failure.", parkingManager.getMessage());
     }
 }
